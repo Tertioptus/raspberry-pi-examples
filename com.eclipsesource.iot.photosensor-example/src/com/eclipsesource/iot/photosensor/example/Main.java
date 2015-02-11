@@ -19,7 +19,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-import com.pi4j.io.gpio.GpioController;
+import com.pi3j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
@@ -33,10 +33,10 @@ public class Main {
   private static final String LIGHTS_ON_MSG = "The lights are off";
   private static final String LIGHTS_OFF_MSG = "The lights are on";
   private static final boolean TWITTER_CONFIGURED = false;
-  private static final String APP_SECRET = "XXXX";
-  private static final String APP_KEY = "YYYY";
-  private static final String token = "ZZZ";
-  private static final String secret = "ABABAB";
+  private static final String APP_SECRET = "7QrQkugGP3gFXG1WBSVBArIMSmqupC9gpBlKNaxN76JRc4pMyC";
+  private static final String APP_KEY = "eIT4iF3KpoRShDIJCEe4EAReC";
+  private static final String token = "3021495381-2VN7jx9vNklrwEnPNgJqRi1wV3xyz8W37aOGgWv";
+  private static final String secret = "ai0ZI9tqj44GDsTWORr7sNpaeUinBIRLdV8EVGfjU8lAi";
 
   static LightStatus currentStatus;
   private static Twitter twitter;
@@ -106,6 +106,7 @@ public class Main {
   }
 
   private static void updateStatus(Twitter twitter, LightStatus newStatus) {
+    System.out.println("update light status");
     if (twitter != null && currentStatus != newStatus) {
       try {
         twitter.updateStatus(newStatus.status + " : " + new Date());
