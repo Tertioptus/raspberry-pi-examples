@@ -19,7 +19,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-import com.pi3j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
@@ -53,6 +53,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     System.out.println("Starting the photosensor demo...");
     twitter = setupTwitter();
+    Thread.sleep(1000);
     final GpioController gpio = GpioFactory.getInstance();
     final GpioPinDigitalOutput led = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
     final GpioPinDigitalInput sensor = gpio.provisionDigitalInputPin(RaspiPin.GPIO_01, PinPullResistance.PULL_DOWN);
@@ -64,6 +65,7 @@ public class Main {
     sensor.addListener(new GpioPinListenerDigital() {
       @Override
       public void handleGpioPinDigitalStateChangeEvent(final GpioPinDigitalStateChangeEvent event) {
+        System.out.println("Something happened");
         handleSensorInput(led, event);
       }
 
