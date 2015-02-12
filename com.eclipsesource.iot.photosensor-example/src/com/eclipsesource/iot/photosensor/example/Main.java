@@ -32,11 +32,11 @@ public class Main {
 
   private static final String LIGHTS_ON_MSG = "The lights are off";
   private static final String LIGHTS_OFF_MSG = "The lights are on";
-  private static final boolean TWITTER_CONFIGURED = false;
+  private static final boolean TWITTER_CONFIGURED = true;
   private static final String APP_SECRET = "7QrQkugGP3gFXG1WBSVBArIMSmqupC9gpBlKNaxN76JRc4pMyC";
   private static final String APP_KEY = "eIT4iF3KpoRShDIJCEe4EAReC";
-  private static final String token = "3021495381-2VN7jx9vNklrwEnPNgJqRi1wV3xyz8W37aOGgWv";
-  private static final String secret = "ai0ZI9tqj44GDsTWORr7sNpaeUinBIRLdV8EVGfjU8lAi";
+  private static final String token = "3021495381-qSwcDnVdKkHy874fHaIheByAoLuYSHlWIWrTO4H";
+  private static final String secret = " neh81ZVTal7KO91NxeD6UXlWaoy1842oZNY0v9vQCIr8T";
 
   static LightStatus currentStatus;
   private static Twitter twitter;
@@ -53,6 +53,8 @@ public class Main {
   public static void main(String[] args) throws Exception {
     System.out.println("Starting the photosensor demo...");
     twitter = setupTwitter();
+    System.out.println("Twitter status: " + twitter == null ? "Not active" : "Active");
+    twitter.updateStatus("Tweety Pi " + new Date());
     Thread.sleep(1000);
     final GpioController gpio = GpioFactory.getInstance();
     final GpioPinDigitalOutput led = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
